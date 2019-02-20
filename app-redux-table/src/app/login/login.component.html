@@ -1,0 +1,97 @@
+
+<!-- main app container -->
+<div class="jumbotron">
+    <div class="container">
+
+        <div class="row">
+            <div class="col-sm-1 offset-sm-1">
+                <!-- ANGULAR -->
+                <img width="80" alt="Angular Logo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg==">
+            </div>
+
+            <div class="col-sm-1">
+                <img width="75" heigth="75" src="./assets/typescript.png" />
+            </div>
+
+            <div class="col-sm-1">
+                <img width="65" heigth="65" src="./assets/js.svg" />
+            </div>
+
+            <div class="col-sm-1">
+                <img width="70" heigth="70" src="./assets/redux.png" />
+            </div>
+
+            <div class="col-sm-1">
+                <img width="90" heigth="90" style="padding-right: 20px;" src="./assets/bootstrap.png" />
+            </div>
+
+            <div class="col-sm-1">
+                <img width="100" heigth="100" style="padding-right: 30px; padding-top: 15px;" src="./assets/nodejs.png" />
+            </div>
+
+            <div class="col-sm-1">
+                <img width="65" heigth="65" style="padding-right: 5px;" src="./assets/spring.png" />
+            </div>
+
+            <div class="col-sm-1">
+                <img width="40" heigth="40" src="./assets/java.png" />
+            </div>
+
+            <div class="col-sm-1">
+                <img width="70" heigth="70" style="padding-top: 10px;" src="./assets/mysql.png" />
+            </div>
+
+            <div class="col-sm-1">
+                <img width="65" heigth="65" src="./assets/fedora.png" />
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-4 offset-md-3">
+                <form [formGroup]="registerForm" (ngSubmit)="doLogin()">
+                    <div class="form-group">
+                        <label>username</label>
+                        <input type="text" [(ngModel)]="username" formControlName="username" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.username.errors }" />
+                        <div *ngIf="submitted && f.username.errors" class="invalid-feedback">
+                            <div *ngIf="f.username.errors.required">username is required</div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>password</label>
+                        <div class="input-group">
+                            <input type="password" [(ngModel)]="password" formControlName="password" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.password.errors }" appLoginPassword/>
+                            <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+                                <div *ngIf="f.password.errors.required">password is required</div>
+                                <div *ngIf="f.password.errors.minlength">insert at least 6 characters</div>
+                            </div>
+                        </div>
+                        <div *ngIf="this.submitted == true">
+                            <div *ngIf="(this.loginAttempts$ | async) > 0">
+                                <span class="error">
+                                    <svg xmlns="https://www.w3.org/2000/svg" aria-hidden="true" focusable="false" width="12px" height="12px" viewBox="0 0 24 24" fill="#e51c23">
+                                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z">
+                                        </path>
+                                        <path d="M0 0h24v24H0z" fill="none"></path>
+                                    </svg>
+                                    incorrect username or password
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <button class="btn btn-primary">login</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-4 offset-md-3">
+                <button class="btn btn-primary" style="float: right;" type="button" (click)="goRegister()">register</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<ngx-spinner></ngx-spinner>

@@ -1,0 +1,31 @@
+<div class="container">  
+
+  <div class="row">
+    <div class="col-sm-3 col-lg-9">
+
+      <div class="row">
+
+        <div class="col-sm-3">
+          <h5>
+            The counter is = {{ counter }}
+          </h5>
+        </div>
+
+        <div class="col-sm-1">
+          <button type="button" class="btn btn-primary set-width" (click)="incrementCounter()">+</button>
+        </div>
+
+        <div class="col-sm-1">
+          <button type="button" class="btn btn-primary set-width" (click)="decrementCounter()">-</button>
+        </div>
+
+        <div *ngIf="this.counter != 0" class="col-sm-1">
+          <button type="button" class="btn btn-primary set-width" (click)="restartCounter()">0</button>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+
+</div>

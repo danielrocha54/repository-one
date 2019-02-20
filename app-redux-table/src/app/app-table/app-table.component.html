@@ -1,0 +1,72 @@
+<div class="container">
+
+	<div class="row">
+		<div class="col-sm-1 col-lg-11">
+
+			<form>
+				<div class="container">
+					<div class="row">
+						<div class="col-sm-5">
+							<div class="form-group form-inline">
+							Full text search: <input class="form-control ml-2" type="text" (input)="onSearchChange($event.target.value)"/>
+							</div>
+						</div>
+						<div class="col-sm-7" style="text-align: right;">
+								{{ collectionSize }} displayed
+						</div>
+					</div>
+				</div>
+			</form>
+
+			<table class="table table-striped">
+				<thead>
+					<tr>
+						<th scope="col">#</th>
+						<th scope="col" sortable="year" (sort)="onSort($event)">Year</th>
+						<th scope="col" sortable="manufacturer" (sort)="onSort($event)">Manufacturer</th>
+						<th scope="col" sortable="model" (sort)="onSort($event)">Model</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr *ngFor="let row of dataRows | myfilter:strFilter">
+						<th scope="row">
+							<ngb-highlight [result]="row.internalId"></ngb-highlight>
+						</th>
+						<td>
+							<ngb-highlight [result]="row.year"></ngb-highlight>
+						</td>
+						<td>
+							<ngb-highlight [result]="row.manufacturer"></ngb-highlight>
+						</td>
+						<td>
+							<ngb-highlight [result]="row.model"></ngb-highlight>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col-sm-1 col-lg-11">
+			<div class="d-flex justify-content-between p-2">
+				<ngb-pagination
+					[collectionSize]="collectionSize"
+					[(page)]="page"
+					[maxSize]="5"
+					[rotate]="true"
+					[ellipses]="false"
+					[boundaryLinks]="true"
+					[pageSize]="pageSize">
+				</ngb-pagination>
+
+				<select class="custom-select" style="width: auto" [(ngModel)]="pageSize">
+					<option [ngValue]="20">20 items per page</option>
+					<option [ngValue]="50">50 items per page</option>
+					<option [ngValue]="100">100 items per page</option>
+				</select>
+			</div>
+		</div>
+	</div>
+</div>

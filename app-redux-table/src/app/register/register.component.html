@@ -1,0 +1,47 @@
+<!-- main app container -->
+<div class="jumbotron">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4 offset-md-3">
+                <form [formGroup]="registerForm" (ngSubmit)="register()">
+                    <div class="form-group">
+                        <label>first name</label>
+                        <input type="text" formControlName="firstname" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.firstname.errors }" [(ngModel)]="firstname"/>
+                        <div *ngIf="submitted && f.firstname.errors" class="invalid-feedback">
+                            <div *ngIf="f.firstname.errors.required">first name is required</div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>last name</label>
+                        <input type="text" formControlName="lastname" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.lastname.errors }" [(ngModel)]="lastname"/>
+                        <div *ngIf="submitted && f.lastname.errors" class="invalid-feedback">
+                            <div *ngIf="f.lastname.errors.required">last name is required</div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>username</label>
+                        <input type="text" formControlName="username" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.username.errors }" [(ngModel)]="username"/>
+                        <div *ngIf="submitted && f.username.errors" class="invalid-feedback">
+                            <div *ngIf="f.username.errors.required">username is required</div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>password</label>
+                        <div class="input-group">
+                            <input type="password" [(ngModel)]="password" formControlName="password" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.password.errors }" appLoginPassword/>
+                            <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+                                <div *ngIf="f.password.errors.required">password is required</div>
+                                <div *ngIf="f.password.errors.minlength">insert at least 6 characters</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <button class="btn btn-primary">register</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<ngx-spinner></ngx-spinner>

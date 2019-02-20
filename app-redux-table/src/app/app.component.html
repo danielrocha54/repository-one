@@ -1,0 +1,22 @@
+<!--The content below is only a placeholder and can be replaced.-->
+
+<nav class="navbar navbar-inverse navbar-dark bg-dark">
+  
+  <div *ngIf="(this.user$ | async) == null" class="container-fluid grey-text">
+    <div class="navbar-header">
+      <a class="navbar-brand" (click)="gologinpage()">Angular Redux App</a>
+    </div>
+  </div>
+
+  <div *ngIf="(this.user$ | async) != null" class="container-fluid grey-text">
+    <div class="navbar-header">
+      <a class="navbar-brand">Angular Redux App</a>
+    </div>
+    <ul class="nav navbar-nav navbar-right">
+      <li><a (click)="logout()"><span class="fas fa-sign-out-alt fa-1x"></span> LogOut</a></li>
+    </ul>
+  </div>
+
+</nav>
+
+<router-outlet></router-outlet>
