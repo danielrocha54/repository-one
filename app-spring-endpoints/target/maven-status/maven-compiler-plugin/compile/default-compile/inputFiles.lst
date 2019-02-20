@@ -1,0 +1,8 @@
+/home/daniel/workspace/spring-boot-hibernate-5-example-master/src/main/java/com/devglan/model/UserDetails.java
+/home/daniel/workspace/spring-boot-hibernate-5-example-master/src/main/java/com/devglan/service/UserService.java
+/home/daniel/workspace/spring-boot-hibernate-5-example-master/src/main/java/com/devglan/dao/impl/UserDaoImpl.java
+/home/daniel/workspace/spring-boot-hibernate-5-example-master/src/main/java/com/devglan/dao/UserDao.java
+/home/daniel/workspace/spring-boot-hibernate-5-example-master/src/main/java/com/devglan/controller/UserController.java
+/home/daniel/workspace/spring-boot-hibernate-5-example-master/src/main/java/com/devglan/service/impl/UserServiceImpl.java
+/home/daniel/workspace/spring-boot-hibernate-5-example-master/src/main/java/com/devglan/Application.java
+/home/daniel/workspace/spring-boot-hibernate-5-example-master/src/main/java/com/devglan/CustomPhysicalNamingStrategy.java
