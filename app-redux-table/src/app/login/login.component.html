@@ -59,7 +59,13 @@
                     <div class="form-group">
                         <label>password</label>
                         <div class="input-group">
-                            <input type="password" [(ngModel)]="password" formControlName="password" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.password.errors }" appLoginPassword/>
+                            <input
+                                type="password"
+                                [(ngModel)]="password"
+                                formControlName="password"
+                                class="form-control" [ngClass]="{ 'is-invalid': submitted && f.password.errors }"
+                                (change)="unsubmit()"
+                                appLoginPassword/>
                             <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
                                 <div *ngIf="f.password.errors.required">password is required</div>
                                 <div *ngIf="f.password.errors.minlength">insert at least 6 characters</div>

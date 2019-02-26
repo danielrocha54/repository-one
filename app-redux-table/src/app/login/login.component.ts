@@ -55,4 +55,13 @@ export class LoginComponent implements OnInit {
     
   }
 
+  unsubmit(): void {
+
+    if ( this.submitted ) {
+      this.submitted = false;
+      this._store.dispatch(new appActions.LogOutUser());
+    }
+
+  }
+
 }

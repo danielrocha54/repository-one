@@ -16,8 +16,8 @@ export class AppComponent implements OnInit {
 
   private user$: Observable<User>;
 
-  constructor(private _store: Store<fromStore.AppState>,
-  			  private _router: Router) { }
+  constructor(  private _store: Store<fromStore.AppState>,
+                private _router: Router) { }
  
   ngOnInit() {
   	this.user$ = this._store.pipe(select(fromStore.selectUser));

@@ -24,23 +24,30 @@ public class UserDaoImpl implements UserDao {
 	private EntityManagerFactory entityManagerFactory;
 
 	public List getUserDetails() {
-		Session session = entityManagerFactory.unwrap(SessionFactory.class).openSession();
-		CriteriaBuilder builder = session.getCriteriaBuilder();
+		EntityManager em = entityManagerFactory.createEntityManager();
+		EntityTransaction et = em.getTransaction();
+		et.begin();
+		CriteriaBuilder builder = em.getCriteriaBuilder();
 		CriteriaQuery criteria = builder.createQuery(User.class);
 		Root contactRoot = criteria.from(User.class);
 		criteria.select(contactRoot);
-		return session.createQuery(criteria).getResultList();
+		List users = em.createQuery(criteria).getResultList();
+		et.commit();
+		em.close();
+		return users;
 	}
 
 	public User getUser(String username) {
-		Session session = entityManagerFactory.unwrap(SessionFactory.class).openSession();
-		CriteriaBuilder builder = session.getCriteriaBuilder();
+		EntityManager em = entityManagerFactory.createEntityManager();
+		EntityTransaction et = em.getTransaction();
+		et.begin();
+		CriteriaBuilder builder = em.getCriteriaBuilder();
 		CriteriaQuery criteria = builder.createQuery(User.class);
 		Root contactRoot = criteria.from(User.class);
 		criteria.select(contactRoot).where(builder.equal(contactRoot.get("username"), username));
-		
-		List users = session.createQuery(criteria).getResultList();
-		
+		List users = em.createQuery(criteria).getResultList();
+		et.commit();
+		em.close();
 		return (User) ((users.size() == 0)? null : users.get(0));
 	}
 
@@ -51,6 +58,7 @@ public class UserDaoImpl implements UserDao {
 		et.begin();
 		em.persist(user);
 		et.commit();
+		em.close();
 
 		return getUser(user.getUsername()) != null;
 	}
@@ -62,6 +70,7 @@ public class UserDaoImpl implements UserDao {
 		et.begin();
 		em.remove(em.contains(user) ? user : em.merge(user));
 		et.commit();
+		em.close();
 
 		return getUser(user.getUsername()) == null;
 	}

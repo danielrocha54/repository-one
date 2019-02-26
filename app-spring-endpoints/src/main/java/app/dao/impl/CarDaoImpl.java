@@ -2,7 +2,9 @@ package app.dao.impl;
 
 import java.util.List;
 
+import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.EntityTransaction;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
@@ -22,12 +24,17 @@ public class CarDaoImpl implements CarDao {
 	private EntityManagerFactory entityManagerFactory;
 	
 	public List getCarDetails() {
-		Session session = entityManagerFactory.unwrap(SessionFactory.class).openSession();
-		CriteriaBuilder builder = session.getCriteriaBuilder();
+		EntityManager em = entityManagerFactory.createEntityManager();
+		EntityTransaction et = em.getTransaction();
+		et.begin();
+		CriteriaBuilder builder = em.getCriteriaBuilder();
 		CriteriaQuery criteria = builder.createQuery(Car.class);
 		Root contactRoot = criteria.from(Car.class);
 		criteria.select(contactRoot);
-		return session.createQuery(criteria).getResultList();
+		List cars = em.createQuery(criteria).getResultList();
+		et.commit();
+		em.close();
+		return cars;
 	}
 	
 }
